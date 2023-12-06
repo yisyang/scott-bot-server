@@ -9,6 +9,18 @@ import * as console from "console"
 
 dotenv.config({ path: '.env.local' })
 
+// Complain loudly if we don't have an API key
+if (!process.env["OPENAI_API_KEY"]) {
+  console.error("Error: OPENAI_API_KEY is required but not in .env.local")
+  process.exit(1)
+}
+
+// Complain loudly if we don't have a main assistant ID
+if (!process.env["MAIN_ASSISTANT_ID"]) {
+  console.error("Error: MAIN_ASSISTANT_ID is required but not in .env.local")
+  process.exit(1)
+}
+
 const openai = new OpenAI({
   apiKey: process.env["OPENAI_API_KEY"]
 })
